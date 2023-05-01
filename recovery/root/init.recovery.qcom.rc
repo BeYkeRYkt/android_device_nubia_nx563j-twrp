@@ -45,6 +45,9 @@ on init && property:ro.boot.dynamic_partitions=true
     exec u:r:recovery:s0 -- /system/bin/merge-fstab.sh
 
 on boot
+    start qseecomd
+    exec u:r:recovery:s0 -- /system/bin/sleep 1s
+    start keymaster-3-0
     start health-hal-2-1
 
     # Enable double tap
