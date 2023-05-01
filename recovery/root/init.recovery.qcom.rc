@@ -45,15 +45,16 @@ on init && property:ro.boot.dynamic_partitions=true
     exec u:r:recovery:s0 -- /system/bin/merge-fstab.sh
 
 on boot
-    # Workaround for adb not coming up
-    setprop sys.usb.config mtp,adb
-    setprop sys.usb.config adb
     start health-hal-2-1
-
-    # Enable OTG
-    write /sys/devices/soc/800f000.qcom,spmi/spmi-0/spmi0-02/800f000.qcom,spmi:qcom,pmi8998@2:qcom,qpnp-smb2/power_supply/usb/otg_switch 1
 
     # Enable double tap
     chown system system /sys/bus/i2c/devices/5-0020/wake_gesture
     write /sys/bus/i2c/devices/5-0020/wake_gesture 1
 
+on property:ro.twrp.fastbootd=0
+    # Workaround for adb not coming up
+    setprop sys.usb.config mtp,adb
+    setprop sys.usb.config adb
+
+    # Enable OTG
+    write /sys/devices/soc/800f000.qcom,spmi/spmi-0/spmi0-02/800f000.qcom,spmi:qcom,pmi8998@2:qcom,qpnp-smb2/power_supply/usb/otg_switch 1
