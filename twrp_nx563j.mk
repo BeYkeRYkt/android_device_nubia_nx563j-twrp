@@ -26,8 +26,8 @@ $(call inherit-product, vendor/twrp/config/common.mk)
 
 # qcom standard decryption
 PRODUCT_PACKAGES += \
-	qcom_decrypt \
-	qcom_decrypt_fbe
+    qcom_decrypt \
+    qcom_decrypt_fbe
 
 PRODUCT_PROPERTY_OVERRIDES += \
     ro.hardware.keystore=msm8998 \
@@ -44,8 +44,8 @@ PRODUCT_BUILD_PROP_OVERRIDES += TARGET_DEVICE=NX563J PRODUCT_NAME=NX563J
 
 # Verity
 PRODUCT_SUPPORTS_BOOT_SIGNER := true
-PRODUCT_SUPPORTS_VERITY := true
-PRODUCT_SUPPORTS_VERITY_FEC := true
+PRODUCT_SUPPORTS_VERITY := false
+PRODUCT_SUPPORTS_VERITY_FEC := false
 PRODUCT_VERITY_SIGNING_KEY := build/target/product/security/verity
 
 PRODUCT_BUILD_PROP_OVERRIDES += \
