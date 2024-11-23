@@ -52,3 +52,13 @@ PRODUCT_BUILD_PROP_OVERRIDES += \
     PRIVATE_BUILD_DESC="NX563J-user 7.1.1 NMF26X eng.nubia.20181008.160254 release-keys"
 
 BUILD_FINGERPRINT := nubia/NX563J/NX563J:7.1.1/NMF26X/eng.nubia.20171019.101529:user/release-keys
+
+ifeq ($(NUBIA_DYNAMIC), true)
+# Dynamic Partitions
+PRODUCT_USE_DYNAMIC_PARTITIONS := true
+PRODUCT_RETROFIT_DYNAMIC_PARTITIONS := true
+
+# fastbootd
+PRODUCT_PACKAGES += \
+    fastbootd
+endif

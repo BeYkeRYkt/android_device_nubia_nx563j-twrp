@@ -34,11 +34,15 @@ on fs
     wait /dev/block/platform/soc/${ro.boot.bootdevice}
     symlink /dev/block/platform/soc/${ro.boot.bootdevice} /dev/block/bootdevice
 
+on fs && property:ro.boot.dynamic_partitions=false
     # System-as-root
     export ANDROID_ROOT /system_root
 
 on init
     setprop prepdecrypt.loglevel 2
+
+on init && property:ro.boot.dynamic_partitions=true
+    exec u:r:recovery:s0 -- /system/bin/merge-fstab.sh
 
 on boot
     # Workaround for adb not coming up
